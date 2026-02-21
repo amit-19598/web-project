@@ -1,6 +1,6 @@
 ---
 - name: Ping all webservers
-  hosts: webservers
+  hosts: all
   gather_facts: false
   become: false
 
