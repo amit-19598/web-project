@@ -4,6 +4,10 @@
   become: true
 
   tasks:
+    - name: Ensure package manager cache is updated
+      dnf:
+        update_cache: yes
+
     - name: Install httpd
       dnf:
         name: httpd
