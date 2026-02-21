@@ -1,11 +1,11 @@
 ---
-- name: Copy directory to remote
+- name: Copy data folder to remote hosts
   hosts: all
   become: yes
 
   tasks:
-    - name: Copy data folder to remote
+    - name: Copy data folder to /tmp on remote
       copy:
-        src: data/test1
-        dest: /tmp/data/
+        src: data/        # relative path inside files/
+        dest: /tmp/data/  # destination path on remote
         mode: '0755'
