@@ -6,6 +6,6 @@
   tasks:
     - name: Copy data folder to remote
       copy:
-        src: data/
+        src: data/test1
         dest: /tmp/data/
         mode: '0755'
