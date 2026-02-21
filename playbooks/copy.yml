@@ -4,10 +4,10 @@
   become: yes
 
   tasks:
-    - name: Copy file from local to remote
+    - name: Copy data directory to remote
       copy:
-        src: /data/
+        src: data/
         dest: /tmp/data/
         owner: root
         group: root
-        mode: '0644'
+        mode: '0755'
