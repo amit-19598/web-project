@@ -1,13 +1,11 @@
 ---
-- name: Copy file to remote server
+- name: Copy directory to remote
   hosts: all
   become: yes
 
   tasks:
-    - name: Copy data directory to remote
+    - name: Copy data folder to remote
       copy:
         src: data/
         dest: /tmp/data/
-        owner: root
-        group: root
         mode: '0755'
