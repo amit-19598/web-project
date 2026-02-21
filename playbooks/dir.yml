@@ -1,0 +1,12 @@
+---
+- name: Create a directory on remote servers
+  hosts: all
+  become: yes   # Run with sudo privileges
+  tasks:
+    - name: Create a directory
+      ansible.builtin.file:
+        path: /opt/myapp
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
