@@ -7,7 +7,7 @@
     - name: Copy file from local to remote
       copy:
         src: /data/
-        dest: /tmp/
+        dest: /tmp/data/
         owner: root
         group: root
         mode: '0644'
