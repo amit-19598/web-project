@@ -1,14 +1,25 @@
 ---
-- name: Check Uptime on Webservers
+- name: Install Apache Web Server on RHEL 10
   hosts: webservers
-  gather_facts: false
-  become: false
+  become: true
 
   tasks:
-    - name: Get uptime of the server
-      command: uptime
-      register: uptime_result
+    - name: Ensure package manager cache is up-to-date
+      dnf:
+        update_cache: yes
 
-    - name: Show uptime
-      debug:
-        msg: "{{ inventory_hostname }} uptime: {{ uptime_result.stdout }}"
+    - name: Import Red Hat GPG key
+      rpm_key:
+        state: present
+        key: /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+    - name: Install httpd package
+      dnf:
+        name: httpd
+        state: present
+
+    - name: Start and enable httpd
+      service:
+        name: httpd
+        state: started
+        enabled: true
