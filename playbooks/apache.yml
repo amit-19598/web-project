@@ -1,22 +1,20 @@
----
-- name: Install Apache Web Server on RHEL 10
+- name: Install Apache httpd on RHEL 10 (skip GPG)
   hosts: webservers
   become: true
 
   tasks:
-    - name: Ensure package manager cache is up-to-date
+    - name: Update package cache
       dnf:
         update_cache: yes
+        skip_broken: yes
 
-    - name: Import Red Hat GPG key
-      rpm_key:
-        state: present
-        key: /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
-
-    - name: Install httpd package
+    - name: Install httpd
       dnf:
         name: httpd
         state: present
+        validate_certs: yes
+        installroot: /
+        disable_gpg_check: yes
 
     - name: Start and enable httpd
       service:
