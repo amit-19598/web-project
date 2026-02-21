@@ -1,5 +1,5 @@
 ---
-- name: Install Apache Web Server
+- name: Install Apache Web Server on RHEL 10
   hosts: webservers
   become: true
 
@@ -8,13 +8,13 @@
       dnf:
         update_cache: yes
 
+    - name: Install GPG key for Red Hat packages
+      rpm_key:
+        state: present
+        key: /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
     - name: Install httpd
       dnf:
         name: httpd
         state: present
-
-    - name: Start and enable httpd
-      service:
-        name: httpd
-        state: started
-        enabled: true
+        validate_certs: yes
