@@ -6,6 +6,6 @@
   tasks:
     - name: Copy data folder to /tmp on remote
       copy:
-        src: /root/web-project/playbooks/files/data/        # relative path inside files/
-        dest: /tmp/data/  # destination path on remote
+        src: /root/web-project/playbooks/files/data/test1        # relative path inside files/
+        dest: /tmp/test1  # destination path on remote
         mode: '0755'
